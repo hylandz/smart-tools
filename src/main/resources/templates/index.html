@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工具升级中心</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36CFC9',
+            neutral: '#F5F7FA',
+            dark: '#1D2129',
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto { content-visibility: auto; }
+      .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+      .version-item-hover { @apply hover:bg-primary/5 transition-colors cursor-pointer; }
+      .fade-in { animation: fadeIn 0.3s ease-in-out; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    }
+  </style>
+</head>
+
+<body class="font-inter bg-gray-50 text-dark min-h-screen flex flex-col">
+  <!-- 顶部导航 -->
+  <header class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+          <i class="fa fa-rocket text-white text-xl"></i>
+        </div>
+        <h1 class="text-xl font-bold text-dark">ToolPro <span class="text-primary text-sm font-normal">升级中心</span></h1>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#" class="text-primary font-medium">首页</a>
+        <a href="#changelog" class="text-gray-600 hover:text-primary transition-colors">更新日志</a>
+        <a href="#download" class="text-gray-600 hover:text-primary transition-colors">立即下载</a>
+        <a href="#" class="text-gray-600 hover:text-primary transition-colors">帮助中心</a>
+      </nav>
+
+      <button class="md:hidden text-gray-600" id="mobileMenuBtn">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <a href="#" class="text-primary font-medium py-2">首页</a>
+        <a href="#changelog" class="text-gray-600 hover:text-primary transition-colors py-2">更新日志</a>
+        <a href="#download" class="text-gray-600 hover:text-primary transition-colors py-2">立即下载</a>
+        <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2">帮助中心</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主横幅 -->
+  <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
+          <i class="fa fa-bell mr-1"></i> 发现新版本
+        </span>
+        <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6 leading-tight text-shadow">
+          ToolPro 已更新至 <span class="text-secondary">v2.1.0</span>
+        </h2>
+        <p class="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+          带来全新功能体验、性能优化和问题修复，立即升级获取更好的使用体验
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#download" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg">
+            <i class="fa fa-download mr-2"></i> 立即升级
+          </a>
+          <a href="#changelog" class="bg-transparent border-2 border-white/80 text-white hover:bg-white/10 px-8 py-3 rounded-lg font-semibold transition-all">
+            <i class="fa fa-list-alt mr-2"></i> 查看更新内容
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 版本对比 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">版本对比</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">了解当前版本与最新版本的差异，明确升级带来的改进</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- 当前版本 -->
+        <div class="bg-neutral rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h4 class="text-lg font-semibold">当前版本</h4>
+              <p class="text-gray-500 text-sm">已安装于您的设备</p>
+            </div>
+            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium">v1.8.5</span>
+          </div>
+
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>基础数据处理功能</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>标准导出格式支持</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-times-circle text-red-500 mt-1 mr-3"></i>
+              <span>高级数据分析模块</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-times-circle text-red-500 mt-1 mr-3"></i>
+              <span>云端同步功能</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+              <span>已知3个性能问题</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 最新版本 -->
+        <div class="bg-primary/5 rounded-xl p-6 shadow-sm border border-primary/10 hover:shadow-md transition-shadow relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-primary text-white text-xs px-3 py-1 rounded-bl-lg font-medium">
+            推荐
+          </div>
+
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h4 class="text-lg font-semibold">最新版本</h4>
+              <p class="text-gray-500 text-sm">包含全部新功能</p>
+            </div>
+            <span class="px-3 py-1 bg-primary text-white rounded-full text-sm font-medium">v2.1.0</span>
+          </div>
+
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>基础数据处理功能增强</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>新增5种导出格式</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>高级数据分析模块</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-green-500 mt-1 mr-3"></i>
+              <span>云端同步功能</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-shield text-primary mt-1 mr-3"></i>
+              <span>修复全部已知问题，性能提升40%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 更新日志（含历史版本下载） -->
+  <section id="changelog" class="py-16 bg-neutral">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">更新日志</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">详细了解每个版本的功能更新和问题修复</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- 版本切换区：下拉选择器 + 版本列表 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+          <!-- 下拉选择器 -->
+          <div class="mb-4">
+            <label class="block text-sm text-gray-600 mb-2">选择版本</label>
+            <div class="relative">
+              <select id="versionSelect" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none bg-white">
+                <option value="2.1.0">v2.1.0（最新版）- 2023-10-15</option>
+                <option value="2.0.0">v2.0.0 - 2023-09-01</option>
+                <option value="1.9.0">v1.9.0 - 2023-07-20</option>
+                <option value="1.8.0">v1.8.0 - 2023-06-05</option>
+                <option value="1.7.0">v1.7.0 - 2023-04-28</option>
+              </select>
+              <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <i class="fa fa-chevron-down text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 版本列表（可滚动） -->
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">历史版本</label>
+            <div class="max-h-32 overflow-y-auto pr-2 border border-gray-200 rounded-lg p-2 bg-gray-50">
+              <div class="version-list space-y-1">
+                <div class="version-item version-item-hover p-2 rounded-lg bg-primary/10 border-l-4 border-primary" data-version="2.1.0">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-medium">v2.1.0</span>
+                      <span class="text-xs text-gray-500 ml-2">2023-10-15</span>
+                    </div>
+                    <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">最新版</span>
+                  </div>
+                </div>
+                <div class="version-item version-item-hover p-2 rounded-lg" data-version="2.0.0">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-medium">v2.0.0</span>
+                      <span class="text-xs text-gray-500 ml-2">2023-09-01</span>
+                    </div>
+                    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">主要更新</span>
+                  </div>
+                </div>
+                <div class="version-item version-item-hover p-2 rounded-lg" data-version="1.9.0">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-medium">v1.9.0</span>
+                      <span class="text-xs text-gray-500 ml-2">2023-07-20</span>
+                    </div>
+                    <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">功能更新</span>
+                  </div>
+                </div>
+                <div class="version-item version-item-hover p-2 rounded-lg" data-version="1.8.0">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-medium">v1.8.0</span>
+                      <span class="text-xs text-gray-500 ml-2">2023-06-05</span>
+                    </div>
+                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">基础优化</span>
+                  </div>
+                </div>
+                <div class="version-item version-item-hover p-2 rounded-lg" data-version="1.7.0">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <span class="font-medium">v1.7.0</span>
+                      <span class="text-xs text-gray-500 ml-2">2023-04-28</span>
+                    </div>
+                    <span class="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">常规更新</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 版本详情区域（含下载按钮） -->
+        <!-- 最新版本v2.1.0 -->
+        <div class="changelog-content active bg-white rounded-xl p-6 shadow-sm fade-in" id="content-2.1.0">
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-xl font-bold">v2.1.0 <span class="text-sm font-normal text-gray-500">2023-10-15</span></h4>
+            <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">重要更新</span>
+          </div>
+
+          <div class="space-y-6">
+            <!-- 新功能/优化/修复内容（略） -->
+            <div>
+              <h5 class="flex items-center text-lg font-semibold text-primary mb-3">
+                <i class="fa fa-star mr-2"></i> 新功能
+              </h5>
+              <ul class="space-y-2 pl-8 list-disc text-gray-700">
+                <li>新增高级数据分析模块，支持趋势预测和异常检测</li>
+                <li>添加云端同步功能，支持用户配置跨设备自动同步</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 最新版本下载按钮（突出显示） -->
+          <div class="mt-8 pt-6 border-t border-gray-100">
+            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              <div>
+                <p class="text-sm text-gray-500">推荐下载最新版本获取最佳体验</p>
+                <p class="text-sm font-medium mt-1">ToolPro_v2.1.0 全平台安装包</p>
+              </div>
+              <a href="#download" class="ml-auto bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-medium transition-colors flex items-center">
+                <i class="fa fa-download mr-2"></i> 前往下载
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 历史版本v2.0.0（含下载按钮） -->
+        <div class="changelog-content hidden bg-white rounded-xl p-6 shadow-sm" id="content-2.0.0">
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-xl font-bold">v2.0.0 <span class="text-sm font-normal text-gray-500">2023-09-01</span></h4>
+            <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">主要更新</span>
+          </div>
+
+          <div class="space-y-6">
+            <!-- 版本内容（略） -->
+            <div>
+              <h5 class="flex items-center text-lg font-semibold text-primary mb-3">
+                <i class="fa fa-star mr-2"></i> 新功能
+              </h5>
+              <ul class="space-y-2 pl-8 list-disc text-gray-700">
+                <li>全新Material Design风格UI重构</li>
+                <li>新增“快速操作面板”</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 历史版本下载按钮（明确标注） -->
+          <div class="mt-8 pt-6 border-t border-gray-100">
+            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              <div>
+                <p class="text-sm text-amber-600 flex items-center">
+                  <i class="fa fa-info-circle mr-1"></i> 此为历史版本，推荐使用最新版
+                </p>
+                <p class="text-sm font-medium mt-1">ToolPro_v2.0.0 安装包</p>
+              </div>
+              <button class="historical-download ml-auto bg-gray-800 hover:bg-gray-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors flex items-center" data-version="2.0.0">
+                <i class="fa fa-download mr-2"></i> 下载此版本
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 历史版本v1.9.0（含下载按钮） -->
+        <div class="changelog-content hidden bg-white rounded-xl p-6 shadow-sm" id="content-1.9.0">
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-xl font-bold">v1.9.0 <span class="text-sm font-normal text-gray-500">2023-07-20</span></h4>
+            <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">功能更新</span>
+          </div>
+
+          <div class="space-y-6">
+            <!-- 版本内容（略） -->
+          </div>
+
+          <!-- 历史版本下载按钮 -->
+          <div class="mt-8 pt-6 border-t border-gray-100">
+            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              <div>
+                <p class="text-sm text-amber-600 flex items-center">
+                  <i class="fa fa-info-circle mr-1"></i> 此为历史版本，推荐使用最新版
+                </p>
+                <p class="text-sm font-medium mt-1">ToolPro_v1.9.0 安装包</p>
+              </div>
+              <button class="historical-download ml-auto bg-gray-800 hover:bg-gray-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors flex items-center" data-version="1.9.0">
+                <i class="fa fa-download mr-2"></i> 下载此版本
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 其他历史版本（v1.8.0、v1.7.0）结构相同，均在底部添加下载按钮 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新版本下载专区 -->
+  <section id="download" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">下载最新版本</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">选择适合您操作系统的版本进行下载安装</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <!-- Windows版本 -->
+        <div class="border border-gray-200 rounded-xl p-6 text-center hover:shadow-md transition-all transform hover:-translate-y-1">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-windows text-blue-600 text-2xl"></i>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Windows</h4>
+          <p class="text-gray-500 text-sm mb-4">支持 Windows 10/11</p>
+          <div class="flex flex-col items-center">
+            <span class="text-gray-600 text-sm mb-2">ToolPro_Setup_v2.1.0.exe</span>
+            <span class="text-gray-500 text-xs mb-4">大小: 85.2 MB</span>
+            <button class="download-btn w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center">
+              <i class="fa fa-download mr-2"></i> 下载
+            </button>
+          </div>
+        </div>
+
+        <!-- macOS版本 -->
+        <div class="border border-gray-200 rounded-xl p-6 text-center hover:shadow-md transition-all transform hover:-translate-y-1">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-apple text-gray-800 text-2xl"></i>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">macOS</h4>
+          <p class="text-gray-500 text-sm mb-4">支持 macOS 11+</p>
+          <div class="flex flex-col items-center">
+            <span class="text-gray-600 text-sm mb-2">ToolPro_v2.1.0.dmg</span>
+            <span class="text-gray-500 text-xs mb-4">大小: 92.5 MB</span>
+            <button class="download-btn w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center">
+              <i class="fa fa-download mr-2"></i> 下载
+            </button>
+          </div>
+        </div>
+
+        <!-- Linux版本 -->
+        <div class="border border-gray-200 rounded-xl p-6 text-center hover:shadow-md transition-all transform hover:-translate-y-1">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa fa-linux text-orange-600 text-2xl"></i>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Linux</h4>
+          <p class="text-gray-500 text-sm mb-4">支持 Ubuntu 20.04+</p>
+          <div class="flex flex-col items-center">
+            <span class="text-gray-600 text-sm mb-2">ToolPro_v2.1.0.deb</span>
+            <span class="text-gray-500 text-xs mb-4">大小: 78.3 MB</span>
+            <button class="download-btn w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center">
+              <i class="fa fa-download mr-2"></i> 下载
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 历史版本下载弹窗 -->
+  <div id="historicalDownloadModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">下载历史版本</h3>
+        <button id="closeHistoricalModal" class="text-gray-500 hover:text-gray-700">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+      <p class="text-sm text-amber-600 mb-4 flex items-start">
+        <i class="fa fa-exclamation-circle mt-0.5 mr-2"></i>
+        <span>历史版本可能存在安全漏洞或功能缺陷，仅推荐用于兼容性测试。建议优先使用最新版。</span>
+      </p>
+
+      <div class="space-y-4 mb-6" id="historicalDownloadOptions">
+        <!-- 动态生成对应版本的下载选项 -->
+      </div>
+
+      <div class="flex justify-end">
+        <button id="cancelHistoricalDownload" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+          取消
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下载进度模态框（通用） -->
+  <div id="downloadModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">正在下载</h3>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between text-sm mb-1">
+          <span id="downloadFileName">ToolPro_Setup_v2.1.0.exe</span>
+          <span id="downloadProgressText">0%</span>
+        </div>
+        <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div id="downloadProgressBar" class="h-full bg-primary w-0 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <div class="text-sm text-gray-500 mb-4">
+        <span id="downloadSize">0 MB / 85.2 MB</span>
+      </div>
+
+      <div class="flex justify-end">
+        <button id="cancelDownload" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+          取消
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 移动端菜单切换
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // 版本切换逻辑
+    const versionSelect = document.getElementById('versionSelect');
+    const versionItems = document.querySelectorAll('.version-item');
+    const changelogContents = document.querySelectorAll('.changelog-content');
+
+    const switchVersion = (version) => {
+      changelogContents.forEach(content => {
+        content.classList.add('hidden', 'fade-in');
+        if (content.id === `content-${version}`) {
+          setTimeout(() => {
+            content.classList.remove('hidden');
+            setTimeout(() => content.classList.add('fade-in'), 50);
+          }, 200);
+        }
+      });
+
+      versionItems.forEach(item => {
+        item.classList.remove('bg-primary/10', 'border-l-4', 'border-primary');
+        if (item.getAttribute('data-version') === version) {
+          item.classList.add('bg-primary/10', 'border-l-4', 'border-primary');
+        }
+      });
+
+      versionSelect.value = version;
+    };
+
+    versionSelect.addEventListener('change', () => switchVersion(versionSelect.value));
+    versionItems.forEach(item => {
+      item.addEventListener('click', () => switchVersion(item.getAttribute('data-version')));
+    });
+
+    // 历史版本下载逻辑
+    const historicalDownloadBtns = document.querySelectorAll('.historical-download');
+    const historicalDownloadModal = document.getElementById('historicalDownloadModal');
+    const historicalDownloadOptions = document.getElementById('historicalDownloadOptions');
+    const closeHistoricalModal = document.getElementById('closeHistoricalModal');
+    const cancelHistoricalDownload = document.getElementById('cancelHistoricalDownload');
+
+    // 历史版本下载链接数据（实际项目中可从后端获取）
+    const historicalVersions = {
+      '2.0.0': {
+        windows: 'ToolPro_Setup_v2.0.0.exe',
+        macos: 'ToolPro_v2.0.0.dmg',
+        linux: 'ToolPro_v2.0.0.deb',
+        sizes: { windows: '80.5 MB', macos: '88.3 MB', linux: '75.1 MB' }
+      },
+      '1.9.0': {
+        windows: 'ToolPro_Setup_v1.9.0.exe',
+        macos: 'ToolPro_v1.9.0.dmg',
+        linux: 'ToolPro_v1.9.0.deb',
+        sizes: { windows: '78.2 MB', macos: '85.7 MB', linux: '73.4 MB' }
+      }
+    };
+
+    // 打开历史版本下载弹窗
+    historicalDownloadBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const version = btn.getAttribute('data-version');
+        const versionData = historicalVersions[version];
+
+        // 动态生成该版本的下载选项
+        historicalDownloadOptions.innerHTML = `
+          <!-- Windows -->
+          <div class="border border-gray-100 rounded-lg p-3">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-windows text-blue-600 mr-3"></i>
+                <div>
+                  <p class="text-sm font-medium">Windows</p>
+                  <p class="text-xs text-gray-500">${versionData.windows}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-500">${versionData.sizes.windows}</span>
+                <button class="historical-file-download text-primary hover:text-primary/80" data-file="${versionData.windows}">
+                  <i class="fa fa-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- macOS -->
+          <div class="border border-gray-100 rounded-lg p-3">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-apple text-gray-800 mr-3"></i>
+                <div>
+                  <p class="text-sm font-medium">macOS</p>
+                  <p class="text-xs text-gray-500">${versionData.macos}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-500">${versionData.sizes.macos}</span>
+                <button class="historical-file-download text-primary hover:text-primary/80" data-file="${versionData.macos}">
+                  <i class="fa fa-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linux -->
+          <div class="border border-gray-100 rounded-lg p-3">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-linux text-orange-600 mr-3"></i>
+                <div>
+                  <p class="text-sm font-medium">Linux</p>
+                  <p class="text-xs text-gray-500">${versionData.linux}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-500">${versionData.sizes.linux}</span>
+                <button class="historical-file-download text-primary hover:text-primary/80" data-file="${versionData.linux}">
+                  <i class="fa fa-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        historicalDownloadModal.classList.remove('hidden');
+
+        // 绑定历史版本文件下载事件
+        document.querySelectorAll('.historical-file-download').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const fileName = e.currentTarget.getAttribute('data-file');
+            historicalDownloadModal.classList.add('hidden');
+            startDownload(fileName); // 调用通用下载进度方法
+          });
+        });
+      });
+    });
+
+    // 关闭历史版本下载弹窗
+    const closeHistoricalDownloadModal = () => {
+      historicalDownloadModal.classList.add('hidden');
+    };
+    closeHistoricalModal.addEventListener('click', closeHistoricalDownloadModal);
+    cancelHistoricalDownload.addEventListener('click', closeHistoricalDownloadModal);
+    historicalDownloadModal.addEventListener('click', (e) => e.target === historicalDownloadModal && closeHistoricalDownloadModal());
+
+    // 通用下载进度模拟
+    const downloadModal = document.getElementById('downloadModal');
+    const closeModal = document.getElementById('closeModal');
+    const cancelDownload = document.getElementById('cancelDownload');
+    const downloadProgressBar = document.getElementById('downloadProgressBar');
+    const downloadProgressText = document.getElementById('downloadProgressText');
+    const downloadSize = document.getElementById('downloadSize');
+    const downloadFileName = document.getElementById('downloadFileName');
+    const downloadBtns = document.querySelectorAll('.download-btn');
+
+    let progressInterval;
+
+    const startDownload = (fileName) => {
+      downloadFileName.textContent = fileName;
+      downloadModal.classList.remove('hidden');
+
+      let progress = 0;
+      downloadProgressBar.style.width = '0%';
+      downloadProgressText.textContent = '0%';
+
+      // 提取文件大小（实际项目中从后端获取）
+      const sizeMatch = fileName.match(/v(\d+\.\d+\.\d+)/);
+      const version = sizeMatch ? sizeMatch[1] : '2.1.0';
+      const totalSize = version === '2.1.0' ? 85.2 :
+                       version === '2.0.0' ? 80.5 : 78.2;
+
+      downloadSize.textContent = `0 MB / ${totalSize} MB`;
+
+      clearInterval(progressInterval);
+      progressInterval = setInterval(() => {
+        progress += Math.random() * 5;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(progressInterval);
+          setTimeout(() => downloadModal.classList.add('hidden'), 2000);
+        }
+        downloadProgressBar.style.width = `${progress}%`;
+        downloadProgressText.textContent = `${Math.round(progress)}%`;
+        const downloaded = (progress / 100 * totalSize).toFixed(1);
+        downloadSize.textContent = `${downloaded} MB / ${totalSize} MB`;
+      }, 300);
+    };
+
+    // 最新版本下载按钮
+    downloadBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const fileName = e.currentTarget.closest('div').querySelector('span:first-of-type').textContent;
+        startDownload(fileName);
+      });
+    });
+
+    // 关闭下载弹窗
+    const closeDownloadModal = () => {
+      clearInterval(progressInterval);
+      downloadModal.classList.add('hidden');
+    };
+    closeModal.addEventListener('click', closeDownloadModal);
+    cancelDownload.addEventListener('click', closeDownloadModal);
+    downloadModal.addEventListener('click', (e) => e.target === downloadModal && closeDownloadModal());
+
+    // 滚动时导航栏样式变化
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('py-2', 'shadow');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.add('py-4');
+        header.classList.remove('py-2', 'shadow');
+      }
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          mobileMenu.classList.add('hidden');
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

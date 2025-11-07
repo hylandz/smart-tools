@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EXE 文件上传</title>
+    <meta charset="UTF-8">
+    <style>
+        .upload-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .progress {
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="upload-container">
+    <h2>EXE 文件上传</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">选择 EXE 文件:</label>
+            <input type="file" id="file" name="file" accept=".exe,.msi,.bat,.cmd,.sh,.bin" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">文件描述:</label>
+            <textarea id="description" name="description" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="version">版本号:</label>
+            <input type="text" id="version" name="version">
+        </div>
+
+        <div class="form-group">
+            <label for="platform">平台:</label>
+            <select id="platform" name="platform">
+                <option value="WINDOWS">Windows</option>
+                <option value="LINUX">Linux</option>
+                <option value="MACOS">macOS</option>
+                <option value="ALL">所有平台</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="architecture">架构:</label>
+            <select id="architecture" name="architecture">
+                <option value="X86">32位 (x86)</option>
+                <option value="X64">64位 (x64)</option>
+                <option value="ARM64">ARM64</option>
+                <option value="ALL">所有架构</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="createdBy">上传者:</label>
+            <input type="text" id="createdBy" name="createdBy">
+        </div>
+
+        <button type="submit">上传文件</button>
+    </form>
+
+    <div id="progress" class="progress">
+        上传进度: <span id="progressText">0%</span>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const resultDiv = document.getElementById('result');
+        const progressDiv = document.getElementById('progress');
+        const progressText = document.getElementById('progressText');
+
+        progressDiv.style.display = 'block';
+        resultDiv.innerHTML = '上传中...';
+
+        fetch('/api/executables/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                progressDiv.style.display = 'none';
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div style="color: green; margin-top: 20px;">
+                            <h3>上传成功!</h3>
+                            <p>文件ID: ${data.fileId}</p>
+                            <p>文件名: ${data.fileName}</p>
+                            <p>文件大小: ${(data.fileSize / 1024 / 1024).toFixed(2)} MB</p>
+                            <p>MD5: ${data.md5}</p>
+                            <a href="/api/executables/download/${data.fileId}" target="_blank">下载文件</a>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<div style="color: red;">上传失败: ${data.message}</div>`;
+                }
+            })
+            .catch(error => {
+                progressDiv.style.display = 'none';
+                resultDiv.innerHTML = `<div style="color: red;">上传出错: ${error}</div>`;
+            });
+    });
+</script>
+</body>
+</html>
