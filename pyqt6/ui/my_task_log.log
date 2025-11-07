@@ -1,0 +1,57 @@
+2025-10-20 18:15:48 - INFO - Dummy-1 - 任务1 - 任务启动
+2025-10-20 18:15:48 - INFO - Dummy-2 - 任务2 - 任务启动
+2025-10-20 18:15:48 - INFO - Dummy-3 - 任务5 - 任务启动
+2025-10-20 18:15:48 - INFO - Dummy-4 - 任务4 - 任务启动
+2025-10-20 18:15:48 - INFO - Dummy-5 - 任务3 - 任务启动
+2025-10-20 18:15:51 - INFO - Dummy-1 - 任务1 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_1'}）
+2025-10-20 18:15:51 - ERROR - Dummy-1 - 任务1 - 任务执行失败：TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 93, in run
+    self.signals.finished.emit(self.task_id, result)
+TypeError: TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+2025-10-20 18:15:51 - INFO - Dummy-5 - 任务3 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_3'}）
+2025-10-20 18:15:51 - INFO - Dummy-3 - 任务5 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_5'}）
+2025-10-20 18:15:51 - INFO - Dummy-4 - 任务4 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_4'}）
+2025-10-20 18:15:51 - INFO - Dummy-2 - 任务2 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_2'}）
+2025-10-20 18:15:51 - ERROR - Dummy-5 - 任务3 - 任务执行失败：TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 93, in run
+    self.signals.finished.emit(self.task_id, result)
+TypeError: TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+2025-10-20 18:15:51 - ERROR - Dummy-3 - 任务5 - 任务执行失败：TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 93, in run
+    self.signals.finished.emit(self.task_id, result)
+TypeError: TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+2025-10-20 18:15:51 - ERROR - Dummy-4 - 任务4 - 任务执行失败：TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 93, in run
+    self.signals.finished.emit(self.task_id, result)
+TypeError: TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+2025-10-20 18:15:51 - ERROR - Dummy-2 - 任务2 - 任务执行失败：TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 93, in run
+    self.signals.finished.emit(self.task_id, result)
+TypeError: TaskSignals.finished[int, Any].emit(): argument 2 has unexpected type 'str'
+2025-10-21 09:17:07 - INFO - Dummy-1 - 任务1 - 任务启动
+2025-10-21 09:17:07 - INFO - Dummy-2 - 任务4 - 任务启动
+2025-10-21 09:17:07 - INFO - Dummy-3 - 任务3 - 任务启动
+2025-10-21 09:17:07 - INFO - Dummy-4 - 任务2 - 任务启动
+2025-10-21 09:17:07 - INFO - Dummy-5 - 任务5 - 任务启动
+2025-10-21 09:17:09 - INFO - Dummy-1 - 任务1 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_1'}）
+2025-10-21 09:17:09 - INFO - Dummy-2 - 任务4 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_4'}）
+2025-10-21 09:17:09 - INFO - Dummy-5 - 任务5 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_5'}）
+2025-10-21 09:17:09 - INFO - Dummy-3 - 任务3 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_3'}）
+2025-10-21 09:17:09 - INFO - Dummy-4 - 任务2 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_2'}）
+2025-10-21 09:17:25 - INFO - Dummy-1 - 任务100 - 任务启动
+2025-10-21 09:17:27 - INFO - Dummy-1 - 任务100 - 任务完成，结果：{'original': [1, 2, 3, 4, 5], 'processed': [3, 6, 9, 12, 15], 'sum': 45, 'multiplier': 3}
+2025-10-21 09:27:17 - INFO - Dummy-1 - 任务1 - 任务启动
+2025-10-21 09:27:17 - INFO - Dummy-2 - 任务2 - 任务启动
+2025-10-21 09:27:17 - INFO - Dummy-3 - 任务5 - 任务启动
+2025-10-21 09:27:17 - INFO - Dummy-4 - 任务3 - 任务启动
+2025-10-21 09:27:17 - INFO - Dummy-5 - 任务4 - 任务启动
+2025-10-21 09:27:19 - INFO - Dummy-1 - 任务1 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_1'}）
+2025-10-21 09:27:19 - INFO - Dummy-2 - 任务2 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_2'}）
+2025-10-21 09:27:19 - INFO - Dummy-3 - 任务5 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_5'}）
+2025-10-21 09:27:19 - INFO - Dummy-4 - 任务3 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_3'}）
+2025-10-21 09:27:19 - INFO - Dummy-5 - 任务4 - 任务完成，结果：默认任务完成（参数：(), {'msg': '默认任务参数_4'}）

@@ -1,0 +1,1 @@
+pyinstaller --clean --onefile --windowed --name OTACommandTool_v1.0.0.exe --icon=assets/ota.ico  --paths=ota_command main.py

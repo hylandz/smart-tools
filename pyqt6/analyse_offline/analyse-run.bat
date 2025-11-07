@@ -1,0 +1,1 @@
+pyinstaller --clean --onefile --windowed --name AnalyseOffLine_v1.0.0.exe --icon=assets/icons/app.ico --hidden-import tkinter --paths=analyse_offline main.py

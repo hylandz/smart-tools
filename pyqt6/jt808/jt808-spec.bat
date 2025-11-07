@@ -1,0 +1,1 @@
+pyinstaller jt808_parser.spec

@@ -1,0 +1,25 @@
+2025-10-20 18:11:44 - INFO - MainThread - 任务全局 - 10个任务已提交到线程池
+2025-10-20 18:11:44 - INFO - Dummy-1 - 任务1 - 开始处理文件：document_1.txt
+2025-10-20 18:11:44 - INFO - Dummy-2 - 任务8 - 开始处理文件：document_8.txt
+2025-10-20 18:11:44 - INFO - Dummy-3 - 任务6 - 开始处理文件：document_6.txt
+2025-10-20 18:11:44 - INFO - Dummy-4 - 任务3 - 开始处理文件：document_3.txt
+2025-10-20 18:11:44 - INFO - Dummy-5 - 任务5 - 开始处理文件：document_5.txt
+2025-10-20 18:11:44 - INFO - Dummy-6 - 任务10 - 开始处理文件：document_10.txt
+2025-10-20 18:11:44 - INFO - Dummy-7 - 任务2 - 开始处理文件：document_2.txt
+2025-10-20 18:11:44 - INFO - Dummy-8 - 任务9 - 开始处理文件：document_9.txt
+2025-10-20 18:11:44 - INFO - Dummy-9 - 任务4 - 开始处理文件：document_4.txt
+2025-10-20 18:11:44 - INFO - Dummy-10 - 任务7 - 开始处理文件：document_7.txt
+2025-10-20 18:11:45 - INFO - Dummy-1 - 任务1 - 文件处理完成：document_1.txt
+2025-10-20 18:11:45 - INFO - Dummy-5 - 任务5 - 文件处理完成：document_5.txt
+2025-10-20 18:11:45 - INFO - Dummy-4 - 任务3 - 文件处理完成：document_3.txt
+2025-10-20 18:11:45 - INFO - Dummy-3 - 任务6 - 文件处理完成：document_6.txt
+2025-10-20 18:11:45 - INFO - Dummy-2 - 任务8 - 文件处理完成：document_8.txt
+2025-10-20 18:11:45 - ERROR - Dummy-6 - 任务10 - 处理失败：文件格式错误（模拟异常）
+Traceback (most recent call last):
+  File "E:\code\pyqt6-gui\ui\7.py", line 57, in run
+    raise ValueError("文件格式错误（模拟异常）")
+ValueError: 文件格式错误（模拟异常）
+2025-10-20 18:11:45 - INFO - Dummy-10 - 任务7 - 文件处理完成：document_7.txt
+2025-10-20 18:11:45 - INFO - Dummy-7 - 任务2 - 文件处理完成：document_2.txt
+2025-10-20 18:11:45 - INFO - Dummy-8 - 任务9 - 文件处理完成：document_9.txt
+2025-10-20 18:11:45 - INFO - Dummy-9 - 任务4 - 文件处理完成：document_4.txt

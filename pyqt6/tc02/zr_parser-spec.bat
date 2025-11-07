@@ -1,0 +1,1 @@
+pyinstaller ZRParser.spec

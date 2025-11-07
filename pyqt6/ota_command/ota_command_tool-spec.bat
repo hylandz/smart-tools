@@ -1,0 +1,1 @@
+pyinstaller ota_command_tool.spec

@@ -1,0 +1,1 @@
+pyinstaller bsj29_parser.spec

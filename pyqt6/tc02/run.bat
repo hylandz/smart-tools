@@ -1,0 +1,1 @@
+pyinstaller --clean --onefile --windowed --name ZRParser_v2.3.1.exe --icon=assets/icons/zr3.ico  --paths=tc02 main.py
